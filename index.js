@@ -1,6 +1,9 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
+const deploy_commands = require('./deploy_commands.js');
+
+deploy_commands.execute();
 
 const client = new Client({ 
     intents: [
@@ -40,5 +43,3 @@ console.log("\n");
 
 
 client.login(token);
-
-module.exports = client;
