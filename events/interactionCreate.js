@@ -1,4 +1,4 @@
-let client = require('../Fluff3rBot');
+let client = require('../index.js');
 
 client.on('interactionCreate', async interaction => {
     if (interaction.isCommand()) {
