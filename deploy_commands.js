@@ -1,10 +1,10 @@
 const fs = require('fs');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
-const { servers, token } = require('./config.json');
 
 module.exports = {
     execute() {
+        var servers = JSON.parse(process.env.SERVERS);
         const commands = []
         const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
         console.log("Loading commands:")
@@ -14,7 +14,7 @@ module.exports = {
             commands.push(command.data.toJSON());
         }
 
-        const rest = new REST({ version: '9' }).setToken(token);
+        const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
         for(var server of servers) {
             rest.put(Routes.applicationGuildCommands(server.clientID, server.guildID), { body: commands })

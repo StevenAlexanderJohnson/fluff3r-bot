@@ -1,6 +1,5 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const { token } = require('./config.json');
 const deploy_commands = require('./deploy_commands.js');
 
 deploy_commands.execute();
@@ -42,4 +41,4 @@ for (const file of eventFiles) {
 console.log("\n");
 
 
-client.login(token);
+client.login(process.env.TOKEN);
