@@ -51,7 +51,13 @@ module.exports = {
                 }
             }
             else {
-                await interaction.followUp({ content: "No song is queued" });
+                try {
+                    await interaction.reply({ content: "No song is queued" });
+                }
+                catch (error) {
+                    console.error(error);
+                    await interaction.followUp({ content: "No song is queued" });
+                }
             }
         });
     },

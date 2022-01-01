@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { joinVoiceChannel, getVoiceConnection, createAudioPlayer } = require('@discordjs/voice');
+const { joinVoiceChannel,  createAudioPlayer } = require('@discordjs/voice');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,11 +15,20 @@ module.exports = {
                     channelId: channel.channelId,
                     guildId: channel.guild.id,
                     adapterCreator: channel.guild.voiceAdapterCreator,
+                    selfDeaf: false
                 });
                 connection.subscribe(player);
-                await interaction.reply("joined");
             } catch (error) {
                 console.error(error);
+                await interaction.reply({content: "Error joining channel"});
+                return;
+            }
+            try {
+                await interaction.reply({ content: "Joined"});
+                return;
+            } catch (error) {
+                await interaction.editReply({content: "Joined"});
+                return;
             }
         }
         else {
