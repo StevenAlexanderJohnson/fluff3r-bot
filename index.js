@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const deploy_commands = require('./deploy_commands.js');
+const {token} = require('./config.json');
 
 deploy_commands.execute();
 
@@ -39,6 +40,10 @@ for (const file of eventFiles) {
     }
 }
 console.log("\n");
+client.on('error', error => {
+    console.error("The WebSocket encountered an error:", error);
+});
 
 
 client.login(process.env.TOKEN);
+// client.login(token);

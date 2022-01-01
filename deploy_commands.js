@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
+// const {servers, token} = require('./config.json');
 
 module.exports = {
     execute() {
@@ -15,10 +16,11 @@ module.exports = {
         }
 
         const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+        // const rest = new REST({ version: '9' }).setToken(token);
 
         for(var server of servers) {
             rest.put(Routes.applicationGuildCommands(server.clientID, server.guildID), { body: commands })
-                .then(() => console.log("Successfully registered application commands."))
+                .then(() => console.log(`Successfully registered application commands to '${server.guildID}.`))
                 .catch(console.error);
         }
     }
