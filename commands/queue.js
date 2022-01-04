@@ -27,7 +27,7 @@ module.exports = {
                 .setDescription(videoInfo.videoDetails.video_url)
                 .setThumbnail(videoInfo.videoDetails.thumbnails[0].url)
             // Get the stream data
-            var stream = ytdl(interaction.options.get("video").value, { filter: 'audioonly', opusEncoded: true });
+            var stream = ytdl(interaction.options.get("video").value, { filter: 'audioonly', opusEncoded: true, quality: 'lowestaudio' });
             // Create a resource to be played and set volume
             resource = createAudioResource(stream, {inlineVolume: true});
             resource.volume.setVolume(.2);
@@ -49,7 +49,7 @@ module.exports = {
                 .setDescription(videoList.all[0].url)
                 .setThumbnail(videoList.all[0].thumbnail)
             // Get the stream data, create resource and push to queue
-            var stream = ytdl(videoList.all[0].url, { filter: 'audioonly', opusEncoded: true });
+            var stream = ytdl(videoList.all[0].url, { filter: 'audioonly', opusEncoded: true, quality: "lowestaudio" });
             resource = createAudioResource(stream, { inlineVolume: true });
             resource.volume.setVolume(.2);
             queue.push([resource, embed]);
