@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const deploy_commands = require('./deploy_commands.js');
-const {token} = require('./config.json');
+// const {token} = require('./config.json');
 
 deploy_commands.execute();
 
