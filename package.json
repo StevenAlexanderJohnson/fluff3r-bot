@@ -32,6 +32,6 @@
   },
   "homepage": "https://github.com/StevenJohnsonPersonal/fluff3r-bot#readme",
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   }
 }
